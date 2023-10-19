@@ -8,16 +8,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderServiceImpl implements OrderService{
-    @Autowired
+
     private MemberRepository memberRepository;
-    @Autowired
+
     private DiscountPolicy discountPolicy;
 
-    public void setMemberRepository(MemberRepository memberRepository) {
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
         this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
     }
 
-    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+    @Autowired
+    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy){
+        this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
 
